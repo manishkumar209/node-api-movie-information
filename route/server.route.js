@@ -12,8 +12,8 @@ router.route('/movies/:genre').get(movieController.searchMovie);
 router.route('/movies').get(movieController.getMoviesList);
 
 router.route('/review/:id').put(reviewController.addReview);
-router.route('/upvote/:id').get(votingController.upVotes);
-router.route('/downvote/:id').get(votingController.downVotes);
+router.route('/upvote/:id').put(votingController.upVotes);
+router.route('/downvote/:id').put(votingController.downVotes);
 router.route('/top-upvoted').get(votingController.topUpVoted);
 
 export default router;

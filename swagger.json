@@ -221,7 +221,7 @@
             }
         },
         "/upvote/{id}" : {
-            "get" : {
+            "put" : {
                 "tags": [
                     "vote"
                 ],
@@ -240,13 +240,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Upvote"
-                            }
-                        }
+                        "description": "successful operation"
                     },
                     "400": {
                         "description": "Invalid status value",
@@ -258,7 +252,7 @@
             }
         },
         "/downvote/{id}" : {
-            "get" : {
+            "put" : {
                 "tags": [
                     "vote"
                 ],
@@ -277,13 +271,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Downvote"
-                            }
-                        }
+                        "description": "successful operation"
                     },
                     "400": {
                         "description": "Invalid status value",
