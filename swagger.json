@@ -1,0 +1,369 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a simple NodeJS API to demonstrate IMDb-like API documentation which allows users to explore movies information",
+        "title": "Note API- Movie"
+    },
+    "schemes": ["http"],
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "paths" : {
+        "/movie-sync" : {
+            "get" : {
+                "tags": [
+                    "movie"
+                ],
+                "summary" : "Sync movies",
+                "description": "Add some movies from file",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Movie"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/movie" : {
+            "post" : {
+                "tags": [
+                    "movie"
+                ],
+                "summary" : "Add new movie",
+                "description": "Add new movie",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/Movie"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Movie"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/movie/{id}" : {
+            "get" : {
+                "tags": [
+                    "movie"
+                ],
+                "summary" : "Get the movie",
+                "description": "Get the movie",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "movie id that needs to getch the details",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Movie"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/movies" : {
+            "get" : {
+                "tags": [
+                    "movie"
+                ],
+                "summary" : "Get all movies",
+                "description": "Get all the movies",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Movie"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/movies/{genre}" : {
+            "get" : {
+                "tags": [
+                    "movie"
+                ],
+                "summary" : "Get the movie, sorted by release date",
+                "description": "Get the movie, sorted by release date",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "genre",
+                        "in": "path",
+                        "description": "movie genre that needs to getch the details",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Movie"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/review/{id}" : {
+            "put" : {
+                "tags": [
+                    "review"
+                ],
+                "summary" : "Add movie review",
+                "description": "Add movie review",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "movie id that needs to be entered",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/Review"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Review"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/upvote/{id}" : {
+            "get" : {
+                "tags": [
+                    "vote"
+                ],
+                "summary" : "Upvote the movie",
+                "description": "Upvote the movie",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "movie id that needs to be entered",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Upvote"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/downvote/{id}" : {
+            "get" : {
+                "tags": [
+                    "vote"
+                ],
+                "summary" : "Downvote the movie",
+                "description": "Downvote the movie",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "movie id that needs to be entered",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Downvote"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/top-upvoted" : {
+            "get" : {
+                "tags": [
+                    "vote"
+                ],
+                "summary" : "Fetch top 10 movies based on upvotes",
+                "description": "Fetch top 10 movies based on upvotes",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Movie"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+
+        },
+        "Movie" : {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "genre": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "object"
+                },
+                "release_date": {
+                    "type": "string"
+                },
+                "reviews": {
+                    "type": "object"
+                }
+            }  
+        },
+        "Review" : {
+            "type" : "object", 
+            "properties": {
+                "review" : {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
